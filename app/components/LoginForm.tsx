@@ -24,7 +24,7 @@ type User = {
 
 export default function LoginForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+
   const [user, setUser] = useState<User>({ name: "", email: "" });
   const [error, setError] = useState<string>("");
 
@@ -50,6 +50,7 @@ export default function LoginForm() {
   };
 
   useEffect(() => {
+    const searchParams = useSearchParams();
     setError(searchParams.get("sessionExpired") ? "Session Expired" : "");
   }, []);
 
