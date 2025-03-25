@@ -53,11 +53,15 @@ export default function LoginForm() {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     setError(
       searchParams.get("sessionExpired")
         ? "Your session has expired. Please log in again."
         : ""
     );
+=======
+    setError(searchParams.get("sessionExpired") ? "Session Expired" : "");
+>>>>>>> fd8855768adeecaabf5538fdcec9cd3df6b41132
   }, []);
 
   return (
