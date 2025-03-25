@@ -3,7 +3,7 @@
 import "@/styles.css";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { BASE_URL } from "@/common";
+import { BASE_URL } from "@/app/common";
 
 const LogoutButton = () => {
   const router = useRouter();

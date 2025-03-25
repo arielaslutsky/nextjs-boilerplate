@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { DefaultSortOptions, SearchParams } from "./DogPage";
 import { MultiSelect } from "./MultiSelect";
 import { Button } from "./ui/button";
 import { Label } from "@radix-ui/react-label";
@@ -13,6 +12,7 @@ import {
   CardFooter
 } from "./ui/card";
 import { Input } from "./ui/input";
+import { DefaultSortOptions, SearchParams } from "../interfaces";
 
 type SearchProps = {
   breeds?: string[];

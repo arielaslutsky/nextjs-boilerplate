@@ -2,11 +2,11 @@
 
 import * as React from "react";
 
-import { Dog, SearchResults } from "./DogPage";
-import { BASE_URL } from "@/common";
+import { BASE_URL } from "@/app/common";
 import { useEffect, useState } from "react";
 import { DogTableFooter } from "./DogTableFooter";
 import { DogTable } from "./SortingDogTable";
+import { SearchResults, Dog } from "../interfaces";
 
 interface DogTableComponentProps {
   searchResults: SearchResults;
@@ -44,13 +44,7 @@ export function DogTableComponent({
       body: JSON.stringify(searchResults?.resultIds)
     })
       .then((response) => {
-        if (response.status === 401) {
-          // router.push("/");
-          // } else if (!response.ok){
-          //   console.error(`Request failed with status ${response.status}`);
-        } else {
-          return response.json();
-        }
+        return response.json();
       })
       .then((data) => {
         setDogs(data);

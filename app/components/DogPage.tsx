@@ -1,65 +1,19 @@
 "use client";
 
-import { BASE_URL } from "@/common";
+import { BASE_URL } from "@/app/common";
 import { useEffect, useState } from "react";
 import "@/styles.css";
 import { Search } from "./DogSearch";
 import { DogTableComponent } from "./DogTableComponent";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { MatchCard } from "./MatchCard";
-import { LogOut } from "lucide-react";
 import LogoutButton from "./Logout";
-
-export interface Dog {
-  id: string;
-  img: string;
-  name: string;
-  age: number;
-  zip_code: string;
-  breed: string;
-}
-
-interface Location {
-  zip_code: string;
-  latitude: number;
-  longitude: number;
-  city: string;
-  state: string;
-  county: string;
-}
-
-interface Coordinates {
-  lat: number;
-  lon: number;
-}
-
-export interface SearchParams {
-  breeds: string[];
-  zipCodes?: number[];
-  minAge?: number;
-  maxAge?: number;
-  size?: number;
-  from?: number;
-  sortOptions: SortOptions;
-}
-
-interface SortOptions {
-  field: string;
-  order: "asc" | "desc";
-}
-
-export class DefaultSortOptions implements SortOptions {
-  field = "breed";
-  order: "asc" = "asc";
-}
-
-export interface SearchResults {
-  resultIds: string[];
-  total?: number;
-  next: string;
-  prev: string;
-}
+import {
+  SearchParams,
+  SearchResults,
+  Dog,
+  DefaultSortOptions
+} from "../interfaces";
 
 const DogPage = () => {
   const router = useRouter();
@@ -88,7 +42,7 @@ const DogPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(25);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchBreeds = async () => {
       try {
         const response = await fetch(BASE_URL + "/dogs/breeds", {
           method: "GET",
@@ -96,7 +50,6 @@ const DogPage = () => {
         });
         if (response.status === 401) {
           router.push("/?sessionExpired=true");
-          // localStorage.setItem("redirectMessage", "User redirected");
         } else if (response.ok) {
           const data = await response.json();
           setBreeds(data);
@@ -108,15 +61,12 @@ const DogPage = () => {
       }
     };
 
-    fetchData();
+    fetchBreeds();
   }, []);
 
   const getSearchParams = () => {
     const params = new URLSearchParams();
     searchParams?.breeds?.forEach((breed) => params.append("breeds", breed));
-    searchParams?.zipCodes?.forEach((zip) =>
-      params.append("zipCodes", zip.toString())
-    );
     if (searchParams?.minAge !== undefined) {
       params.append("minAge", searchParams.minAge.toString());
     }

@@ -1,9 +1,6 @@
 import * as React from "react";
 
-import { DefaultSortOptions, Dog, SearchParams } from "./DogPage";
-import { MultiSelect } from "./MultiSelect";
 import { Button } from "./ui/button";
-import { Label } from "@radix-ui/react-label";
 import {
   Card,
   CardHeader,
@@ -11,6 +8,7 @@ import {
   CardDescription,
   CardFooter
 } from "./ui/card";
+import { Dog } from "../interfaces";
 
 type MatchCardProps = {
   dog: Dog;

@@ -10,7 +10,6 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 
-import { Dog } from "./DogPage";
 import { Button } from "@/app/components/ui/button";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import {
@@ -21,6 +20,7 @@ import {
   TableHeader,
   TableRow
 } from "@/app/components/ui/table";
+import { Dog } from "../interfaces";
 
 export const columns: ColumnDef<Dog>[] = [
   {

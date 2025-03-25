@@ -1,6 +1,6 @@
 "use client";
 
-import { BASE_URL } from "@/common";
+import { BASE_URL } from "@/app/common";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,7 +15,6 @@ import {
   CardFooter
 } from "./ui/card";
 import { Input } from "./ui/input";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 type User = {
   name: string;
@@ -24,6 +23,7 @@ type User = {
 
 export default function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [user, setUser] = useState<User>({ name: "", email: "" });
   const [error, setError] = useState<string>("");
@@ -40,6 +40,9 @@ export default function LoginForm() {
         body: JSON.stringify(user)
       });
       if (!response.ok) {
+        if (response.status == 400) {
+          setError("Please enter a valid name and email to login.");
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         router.push("/dogs");
@@ -50,8 +53,11 @@ export default function LoginForm() {
   };
 
   useEffect(() => {
-    const searchParams = useSearchParams();
-    setError(searchParams.get("sessionExpired") ? "Session Expired" : "");
+    setError(
+      searchParams.get("sessionExpired")
+        ? "Your session has expired. Please log in again."
+        : ""
+    );
   }, []);
 
   return (
@@ -93,9 +99,7 @@ export default function LoginForm() {
           </div>
           {error != "" && (
             <div className="error-box">
-              <p className="error-message">
-                Your session has expired. Please log in again.
-              </p>
+              <p className="error-message">{error}</p>
             </div>
           )}
         </form>
