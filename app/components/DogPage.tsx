@@ -67,11 +67,11 @@ const DogPage = () => {
   const getSearchParams = () => {
     const params = new URLSearchParams();
     searchParams?.breeds?.forEach((breed) => params.append("breeds", breed));
-    if (searchParams?.minAge !== undefined) {
-      params.append("minAge", searchParams.minAge.toString());
+    if (searchParams?.ageMin !== undefined) {
+      params.append("ageMin", searchParams.ageMin.toString());
     }
-    if (searchParams?.maxAge !== undefined) {
-      params.append("maxAge", searchParams.maxAge.toString());
+    if (searchParams?.ageMax !== undefined) {
+      params.append("ageMax", searchParams.ageMax.toString());
     }
     if (searchParams?.size !== undefined) {
       params.append("size", searchParams.size.toString());

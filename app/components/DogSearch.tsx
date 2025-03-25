@@ -59,29 +59,29 @@ export function Search({
               />
             </div>
             <div className="w-full">
-              <Label htmlFor="minAge">Min Age</Label>
+              <Label htmlFor="ageMin">Min Age</Label>
               <Input
-                id="minAge"
+                id="ageMin"
                 placeholder="Min Age"
-                value={searchParams.minAge ?? ""}
+                value={searchParams.ageMin ?? ""}
                 onChange={(e) => {
                   setSearchParams({
                     ...searchParams,
-                    minAge: Number(e.target.value) // Add new breed while preserving existing ones
+                    ageMin: Number(e.target.value) // Add new breed while preserving existing ones
                   });
                 }}
               />
             </div>
             <div className="flex-col w-full">
-              <Label htmlFor="maxAge">Max Age</Label>
+              <Label htmlFor="ageMax">Max Age</Label>
               <Input
-                id="maxAge"
+                id="ageMax"
                 placeholder="Max Age"
-                value={searchParams?.maxAge ?? ""}
+                value={searchParams?.ageMax ?? ""}
                 onChange={(e) =>
                   setSearchParams({
                     ...searchParams,
-                    maxAge: Number(e.target.value) // Add new breed while preserving existing ones
+                    ageMax: Number(e.target.value)
                   })
                 }
               />
