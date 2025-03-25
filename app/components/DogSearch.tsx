@@ -63,11 +63,12 @@ export function Search({
               <Input
                 id="ageMin"
                 placeholder="Min Age"
+                type="number"
                 value={searchParams.ageMin ?? ""}
                 onChange={(e) => {
                   setSearchParams({
                     ...searchParams,
-                    ageMin: Number(e.target.value) // Add new breed while preserving existing ones
+                    ageMin: e.target.value
                   });
                 }}
               />
@@ -77,11 +78,12 @@ export function Search({
               <Input
                 id="ageMax"
                 placeholder="Max Age"
+                type="number"
                 value={searchParams?.ageMax ?? ""}
                 onChange={(e) =>
                   setSearchParams({
                     ...searchParams,
-                    ageMax: Number(e.target.value)
+                    ageMax: e.target.value
                   })
                 }
               />

@@ -18,8 +18,8 @@ export interface Location {
 
 export interface SearchParams {
   breeds: string[];
-  ageMin?: number;
-  ageMax?: number;
+  ageMin?: string;
+  ageMax?: string;
   size?: number;
   from?: number;
   sortOptions: SortOptions;
